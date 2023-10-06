@@ -17,7 +17,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.educandoweb.course.entities.User;
 import com.educandoweb.course.services.UserService;
-import com.educandoweb.course.services.exceptions.ResourceNotFoundException;
 
 @RestController
 @RequestMapping(value = "/users")
