@@ -36,7 +36,7 @@ public class UserService {
 
 //	public void delete(Long id) {
 //		try {
-//			repository.deleteById(id);			
+//			repository.deleteById(id);
 //		} catch (EmptyResultDataAccessException e) {
 //			throw new ResourceNotFoundException(id);
 //		} catch (DataIntegrityViolationException e) {
@@ -46,14 +46,13 @@ public class UserService {
 
 	public void delete(Long id) {
 		Optional<User> user = repository.findById(id);
-		if (user.isPresent()) {
-			try {
-				repository.deleteById(id);
-			} catch (DataIntegrityViolationException e) {
-				throw new DataBaseException(e.getMessage());
-			}
-		} else {
+		if (user.isEmpty()) {
 			throw new ResourceNotFoundException(id);
+		}
+		try {
+			repository.deleteById(id);
+		} catch (DataIntegrityViolationException e) {
+			throw new DataBaseException(e.getMessage());
 		}
 	}
 
